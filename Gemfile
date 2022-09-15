@@ -40,6 +40,7 @@ gem 'cancancan'
 
 gem 'dotenv-rails'
 
+gem 'ffi'
 # Use Sass to process CSS
 # gem "sassc-rails"
 
