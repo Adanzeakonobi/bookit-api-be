@@ -1,70 +1,62 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Book.it
 
-> Description the project.
+The Book.it API is the back-end service for the Book.it application. It makes use of the Ruby on Rails framework, PostgreSQL, and offers full user authentication and authorization capabilities to provide the Book.it app the necessary endpoints. It contains the data for booking vehicles and users' reservations for the individual user as well as admins.
+
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
-
-## Live Demo (if available)
-
-[Live Demo Link](https://livedemo.com)
+- Ruby on Rails
+- JWT
+- CanCanCan
+- Bullet
+- Devise
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+Setting up this project locally:
+## Prerequisites
+#### On your terminal:
+- Clone this repository to your computer: git clone git@github.com:Danie12345/bookit-api-be.git.
+- Open the project on your code editor: "cd bookit-api-be" and "code ."
+- Install gems: bundle install.
+- Run `rails db:create` to create the database
+- Run `rails db:migrate` to create the tables
+- Run `rails s` and go to `http://127.0.0.1:4000`.
 
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
+- Setup the front end repo with [this link](https://github.com/Danie12345/bookit-fe).
 
 ## Authors
 
-👤 **Author1**
+👤 **Emilia Zambrano**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@emiliazm](https://github.com/emiliazm)
+- Twitter: [@emilia_zm](https://twitter.com/emilia_zm)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/emilia-zambrano-montero-aa30a611b/)
 
-👤 **Author2**
+👤 **Daniel Malo**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@Danie12345](https://github.com/Danie12345)
+- Twitter: [@DanielMalo_v4](https://twitter.com/DanielMalo_v4)
+- LinkedIn: [Daniel Malo](https://linkedin.com/in/daniel-malo)
+
+👤 **Joshua Ivie**
+
+- GitHub: [@joshuaivie](https://github.com/joshuaivie)
+- Twitter: [@joshuaivie\_](https://twitter.com/joshuaivie_)
+- LinkedIn: [joshuaivie](https://linkedin.com/in/joshuaivie)
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/Danie12345/bookit-api-be/issues).
 
 ## Show your support
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
-
 ## 📝 License
 
-This project is [MIT](./LICENSE) licensed.
-
-_NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) - you can set it up quickly by [using templates available on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository). You can also use [any other license](https://choosealicense.com/licenses/) if you wish._
+- This project is [MIT](LICENSE) licensed.
