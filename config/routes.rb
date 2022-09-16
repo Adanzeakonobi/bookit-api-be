@@ -3,4 +3,6 @@ Rails.application.routes.draw do
                  sessions: 'users/sessions',
                  registrations: 'users/registrations'
              }
+  resources :vehicles, only: [:index, :show, :create, :update]
+  resources :reservations, only: [:index, :create]
 end
