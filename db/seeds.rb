@@ -6,26 +6,26 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-first_user = User.create(username: 'Tom', role: 'admin')
+first_user = User.create(username: 'Thomas', role: 'admin', email: 'tom@example.com')
 first_user.password = '123asd'
 first_user.password_confirmation = '123asd'
 first_user.save
 
-second_user = User.create(username: 'Lilly', role: 'user')
+second_user = User.create(username: 'Lillian', role: 'user', email: 'lilly@example.com')
 second_user.password = '123asd'
 second_user.password_confirmation = '123asd'
 second_user.save
 
 first_vehicle = Vehicle.create(
   name: 'Vehicle 1',  
-  price: 2000,
+  price: 2000.00,
   image: 'image_url',
   visible: true
 )
 
 second_vehicle = Vehicle.create(
   name: 'Vehicle 2',  
-  price: 1500,
+  price: 1500.00,
   image: 'image_url',
   visible: true
 )
@@ -37,7 +37,7 @@ first_reservation = Reservation.create(
   city: 'Salta'
 )
 
-first_reservation = Reservation.create(
+second_reservation = Reservation.create(
   user_id: second_user.id,
   vehicle_id: second_vehicle.id,
   date: '2022-02-02',
