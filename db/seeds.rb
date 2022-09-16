@@ -37,7 +37,7 @@ first_reservation = Reservation.create(
   city: 'Salta'
 )
 
-first_reservation = Reservation.create(
+second_reservation = Reservation.create(
   user_id: second_user.id,
   vehicle_id: second_vehicle.id,
   date: '2022-02-02',
