@@ -18,14 +18,14 @@ second_user.save
 
 first_vehicle = Vehicle.create(
   name: 'Vehicle 1',  
-  price: 2000,
+  price: 2000.00,
   image: 'image_url',
   visible: true
 )
 
 second_vehicle = Vehicle.create(
   name: 'Vehicle 2',  
-  price: 1500,
+  price: 1500.00,
   image: 'image_url',
   visible: true
 )
