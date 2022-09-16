@@ -10,7 +10,7 @@ class Vehicle < ApplicationRecord
 
   def self.vehicles
     vehicles = Vehicle.all
-    return vehicles.first.slice(:message) unless vehicles.empty?
+    return vehicles unless vehicles.empty?
 
     { message: 'There are no vehicles in the list' }
   end
