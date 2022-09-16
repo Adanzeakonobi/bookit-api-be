@@ -12,4 +12,8 @@ class User < ApplicationRecord
   def all_reservations
     reservations
   end
+
+  def admin?
+    role == 'admin'
+  end
 end
