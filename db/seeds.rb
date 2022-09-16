@@ -6,13 +6,15 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-first_user = User.create(username: 'Tom')
-# first_user.password_confirmation = '123asd'
-# first_user.confirm
+first_user = User.create(username: 'Tom', role: 'admin')
+first_user.password = '123asd'
+first_user.password_confirmation = '123asd'
+first_user.save
 
-second_user = User.create(username: 'Lilly')
-# second_user.password_confirmation = '123asd'
-# second_user.confirm
+second_user = User.create(username: 'Lilly', role: 'user')
+second_user.password = '123asd'
+second_user.password_confirmation = '123asd'
+second_user.save
 
 first_vehicle = Vehicle.create(
   name: 'Vehicle 1',  
