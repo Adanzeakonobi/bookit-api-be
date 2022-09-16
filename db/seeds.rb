@@ -30,6 +30,13 @@ second_vehicle = Vehicle.create(
   visible: true
 )
 
+second_vehicle = Vehicle.create(
+  name: 'Vehicle 2',  
+  price: 1500.00,
+  image: 'image_url',
+  visible: false
+)
+
 first_reservation = Reservation.create(
   user_id: first_user.id,
   vehicle_id: first_vehicle.id,

@@ -1,0 +1,2 @@
+POST http://localhost:4000/vehicles
+curl -XPOST -i -H "Content-Type: application/json" -d '{ "user": { "email": "admin@example.com", "password": "adminz" } }' http://localhost:4000/users/sign_in
