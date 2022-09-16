@@ -21,6 +21,12 @@ gem 'jbuilder'
 # Linters
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+# Add Devise JWT - https://github.com/waiting-for-dev/devise-jwt
+gem 'devise-jwt'
+
+# Add Rack CORS - https://github.com/cyu/rack-cors
+gem 'rack-cors'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
