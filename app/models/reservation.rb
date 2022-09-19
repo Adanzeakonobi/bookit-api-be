@@ -6,7 +6,8 @@ class Reservation < ApplicationRecord
   validates :vehicle_id, presence: true
   validates :date, presence: true
   validates :city, presence: true
-  validates_uniqueness_of :user_id, scope: [:vehicle_id, :date], message: 'You already made a reservation for this vehicle on this date.'
+  validates_uniqueness_of :user_id, scope: %i[vehicle_id date],
+                                    message: 'You already made a reservation for this vehicle on this date.'
 
   def self.reservations(id)
     @reservations = Reservation.where(user_id: id)
