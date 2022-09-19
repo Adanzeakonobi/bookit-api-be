@@ -28,6 +28,16 @@ class VehiclesController < ApplicationController
     end
   end
 
+  def update
+    return unless can? :manage, @vehicle
+
+    if @vehicle.update(vehicle_params)
+      render json: { message: 'Vehicle updated succesfully' }
+    else
+      render json: @vehicle.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def vehicle_params
