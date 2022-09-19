@@ -9,6 +9,10 @@ class VehiclesController < ApplicationController
     end
   end
 
+  def show
+    render json: @vehicle
+  end
+
   def vehicle_params
     params.require(:vehicle).permit(:name, :price, :image, :visible).merge(user_id: current_user.id)
   end
