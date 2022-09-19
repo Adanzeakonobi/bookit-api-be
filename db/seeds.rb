@@ -31,7 +31,7 @@ second_vehicle = Vehicle.create(
 )
 
 second_vehicle = Vehicle.create(
-  name: 'Vehicle 2',  
+  name: 'Vehicle 3',  
   price: 1500.00,
   image: 'image_url',
   visible: false
