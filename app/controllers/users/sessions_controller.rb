@@ -1,5 +1,4 @@
 class Users::SessionsController < Devise::SessionsController
-  skip_before_action :verify_authenticity_token, only: %i[new create destroy]
   respond_to :json
 
   private
@@ -7,8 +6,9 @@ class Users::SessionsController < Devise::SessionsController
   def respond_with(_resource, _opts = {})
     if current_user
       render json: {
-        status: 200,
-        message: 'You have succesfully logged in.'
+        status: { code: 200,
+                  message: 'You have succesfully logged in.' },
+        data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
       }, status: :ok
     else
       render json: {

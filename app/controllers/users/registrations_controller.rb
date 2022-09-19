@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  skip_before_action :verify_authenticity_token, only: [:create]
+  include RackSessionFix
+
   respond_to :json
 
   private
@@ -7,8 +8,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def respond_with(resource, _opts = {})
     if resource.persisted?
       render json: {
-        status: 200,
-        message: 'Account successfully created!'
+        status: { code: 200,
+                  message: 'Account successfully created!' },
+        data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
       }, status: :ok
     else
       error_list = resource.errors.full_messages.join(' and ').downcase
