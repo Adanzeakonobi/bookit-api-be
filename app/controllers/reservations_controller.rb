@@ -10,7 +10,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       render json: { message: 'Reservation was successfully created.' }
     else
-      render json: { message: @reservation.errors }, status: :unprocessable_entity
+      render json: { error: @reservation.errors[:vehicle_id][0] }, status: :unprocessable_entity
     end
   end
 
