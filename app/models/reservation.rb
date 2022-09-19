@@ -8,7 +8,10 @@ class Reservation < ApplicationRecord
   validates :city, presence: true
   validates_uniqueness_of :user_id, scope: :vehicle_id, message: 'You already made a reservation for this vehicle.'
 
-  def reserved_vehicle
-    vehicle
+  def self.reservations(id)
+    @reservations = Reservation.where(user_id: id)
+    return @reservations unless @reservations.empty?
+    
+    { message: 'You have no reservations.' }
   end
 end
