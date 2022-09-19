@@ -11,7 +11,7 @@ class Reservation < ApplicationRecord
   def self.reservations(id)
     @reservations = Reservation.where(user_id: id)
     return @reservations unless @reservations.empty?
-    
+
     { message: 'You have no reservations.' }
   end
 end
