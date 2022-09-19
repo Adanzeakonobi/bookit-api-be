@@ -30,7 +30,7 @@ second_vehicle = Vehicle.create(
   visible: true
 )
 
-second_vehicle = Vehicle.create(
+third_vehicle = Vehicle.create(
   name: 'Vehicle 3',  
   price: 1500.00,
   image: 'image_url',
@@ -48,5 +48,12 @@ second_reservation = Reservation.create(
   user_id: second_user.id,
   vehicle_id: second_vehicle.id,
   date: '2022-02-02',
+  city: 'Salta'
+)
+
+third_reservation = Reservation.create(
+  user_id: first_user.id,
+  vehicle_id: third_vehicle.id,
+  date: '2022-07-02',
   city: 'Salta'
 )
