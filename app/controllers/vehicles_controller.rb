@@ -30,12 +30,17 @@ class VehiclesController < ApplicationController
   end
 
   def update
-    return unless can? :manage, @vehicle
+    if can? :manage, @vehicle
+      begin
+        @vehicle.update!(vehicle_params)
+        render json: { message: 'Vehicle updated succesfully' }
+      rescue StandardError
+        @errors = 'Could not update the vehicle'
+        render json: { error: @errors }, status: :unprocessable_entity
+      end
 
-    if @vehicle.update(vehicle_params)
-      render json: { message: 'Vehicle updated succesfully' }
     else
-      render json: @vehicle.errors, status: :unprocessable_entity
+      render json: { error: 'You have no access to this resource' }
     end
   end
 
