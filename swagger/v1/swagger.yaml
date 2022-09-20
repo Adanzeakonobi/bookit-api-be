@@ -40,6 +40,74 @@ paths:
               - city
               - vehicle_id
               - user_id
+  "/users/sign_up":
+    get:
+      summary: new registration
+      tags:
+      - User Registrations
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                  pattern: "^\\S+@\\S+\\.\\S+$"
+                  format: email
+                role:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                password_confirmation:
+                  type: string
+                  format: password
+              required:
+              - username
+              - email
+              - role
+              - password
+              - password_confirmation
+  "/users/sign_in":
+    post:
+      summary: create session
+      tags:
+      - Users Sessions
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  pattern: "^\\S+@\\S+\\.\\S+$"
+                  format: email
+                password:
+                  type: string
+                  format: password
+              required:
+              - email
+              - password
+  "/users/sign_out":
+    delete:
+      summary: delete session
+      tags:
+      - Users Sessions
+      responses:
+        '200':
+          description: successful
   "/vehicles":
     get:
       summary: list vehicles
