@@ -7,6 +7,7 @@ class Ability
     return unless user.present?
 
     can %i[read create], Reservation, user: user
+    can %i[create], Vehicle
 
     return unless user.admin?
 
