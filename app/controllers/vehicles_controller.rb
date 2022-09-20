@@ -11,7 +11,9 @@ class VehiclesController < ApplicationController
 
   def show
     if can?(:manage, @vehicle) || @vehicle.visible
-      render json: @vehicle
+      resp = { vehicle: { data: @vehicle } }
+      resp[:vehicle][:reservations] = @vehicle.allreservations
+      render json: resp
     else
       render json: { error: 'Sorry, you do not have access to this vehicle.' }
     end

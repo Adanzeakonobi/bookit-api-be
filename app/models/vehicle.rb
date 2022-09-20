@@ -14,4 +14,8 @@ class Vehicle < ApplicationRecord
 
     { error: 'There are no vehicles in the list' }
   end
+
+  def allreservations
+    reservations.where("date >= ?", Date.today.to_s)
+  end
 end
