@@ -1,7 +1,5 @@
 require 'swagger_helper'
 
-# rubocop:disable Metrics/BlockLength
-
 RSpec.describe 'reservations', type: :request do
   path '/reservations' do
     get('list reservations') do
@@ -9,7 +7,7 @@ RSpec.describe 'reservations', type: :request do
       security [bearerAuth: []]
 
       response(200, 'successful') do
-        let(:"Authorization") { "Bearer #{token_for(user)}" }
+        let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -37,7 +35,7 @@ RSpec.describe 'reservations', type: :request do
       security [bearerAuth: []]
 
       response(200, 'successful') do
-        let(:"Authorization") { "Bearer #{token_for(user)}" }
+        let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -50,4 +48,3 @@ RSpec.describe 'reservations', type: :request do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

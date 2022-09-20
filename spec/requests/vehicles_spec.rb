@@ -1,7 +1,5 @@
 require 'swagger_helper'
 
-# rubocop:disable Metrics/BlockLength
-
 RSpec.describe 'vehicles', type: :request do
   path '/vehicles' do
     get('list vehicles') do
@@ -35,7 +33,7 @@ RSpec.describe 'vehicles', type: :request do
       security [bearerAuth: []]
 
       response(200, 'successful') do
-        let(:"Authorization") { "Bearer #{token_for(user)}" }
+        let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -56,7 +54,7 @@ RSpec.describe 'vehicles', type: :request do
       tags 'Vehicles'
       security [bearerAuth: []]
       response(200, 'successful') do
-        let(:"Authorization") { "Bearer #{token_for(user)}" }
+        let(:Authorization) { "Bearer #{token_for(user)}" }
         let(:id) { '123' }
 
         after do |example|
@@ -74,7 +72,7 @@ RSpec.describe 'vehicles', type: :request do
       tags 'Vehicles'
       security [bearerAuth: []]
       response(200, 'successful') do
-        let(:"Authorization") { "Bearer #{token_for(user)}" }
+        let(:Authorization) { "Bearer #{token_for(user)}" }
         let(:id) { '123' }
 
         after do |example|
@@ -89,4 +87,3 @@ RSpec.describe 'vehicles', type: :request do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength
