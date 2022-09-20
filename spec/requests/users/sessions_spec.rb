@@ -11,10 +11,16 @@ RSpec.describe 'users/sessions', type: :request do
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: {
-          email: { type: :string, pattern: '^\S+@\S+\.\S+$', format: :email },
-          password: { type: :string, format: :password }
+          user: {
+            type: :object,
+            properties: {
+              email: { type: :string, pattern: '^\S+@\S+\.\S+$', format: :email },
+              password: { type: :string, format: :password },
+            },
+            required: %w[email password]
+          }
         },
-        required: %w[email password]
+        required: %w[user]
       }
 
       response(200, 'successful') do
@@ -36,8 +42,10 @@ RSpec.describe 'users/sessions', type: :request do
 
     delete('delete session') do
       tags 'Users Sessions'
+      security [bearerAuth: []]
       response(200, 'successful') do
-
+        
+        let(:"Authorization") { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

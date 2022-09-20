@@ -6,8 +6,10 @@ RSpec.describe 'reservations', type: :request do
   path '/reservations' do
     get('list reservations') do
       tags 'Reservations'
+      security [bearerAuth: []]
 
       response(200, 'successful') do
+        let(:"Authorization") { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -32,8 +34,10 @@ RSpec.describe 'reservations', type: :request do
         },
         required: %w[date city vehicle_id user_id]
       }
+      security [bearerAuth: []]
 
       response(200, 'successful') do
+        let(:"Authorization") { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

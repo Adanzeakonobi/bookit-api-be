@@ -9,6 +9,8 @@ paths:
       summary: list reservations
       tags:
       - Reservations
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: successful
@@ -17,6 +19,8 @@ paths:
       tags:
       - Reservations
       parameters: []
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: successful
@@ -40,8 +44,8 @@ paths:
               - city
               - vehicle_id
               - user_id
-  "/users/sign_up":
-    get:
+  "/users":
+    post:
       summary: new registration
       tags:
       - User Registrations
@@ -55,26 +59,31 @@ paths:
             schema:
               type: object
               properties:
-                username:
-                  type: string
-                email:
-                  type: string
-                  pattern: "^\\S+@\\S+\\.\\S+$"
-                  format: email
-                role:
-                  type: string
-                password:
-                  type: string
-                  format: password
-                password_confirmation:
-                  type: string
-                  format: password
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                      pattern: "^\\S+@\\S+\\.\\S+$"
+                      format: email
+                    role:
+                      type: string
+                    password:
+                      type: string
+                      format: password
+                    password_confirmation:
+                      type: string
+                      format: password
+                  required:
+                  - username
+                  - email
+                  - role
+                  - password
+                  - password_confirmation
               required:
-              - username
-              - email
-              - role
-              - password
-              - password_confirmation
+              - user
   "/users/sign_in":
     post:
       summary: create session
@@ -90,21 +99,28 @@ paths:
             schema:
               type: object
               properties:
-                email:
-                  type: string
-                  pattern: "^\\S+@\\S+\\.\\S+$"
-                  format: email
-                password:
-                  type: string
-                  format: password
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      pattern: "^\\S+@\\S+\\.\\S+$"
+                      format: email
+                    password:
+                      type: string
+                      format: password
+                  required:
+                  - email
+                  - password
               required:
-              - email
-              - password
+              - user
   "/users/sign_out":
     delete:
       summary: delete session
       tags:
       - Users Sessions
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: successful
@@ -113,6 +129,8 @@ paths:
       summary: list vehicles
       tags:
       - Vehicles
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: successful
@@ -121,6 +139,8 @@ paths:
       tags:
       - Vehicles
       parameters: []
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: successful
@@ -156,6 +176,8 @@ paths:
       summary: show vehicle
       tags:
       - Vehicles
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: successful
@@ -163,6 +185,8 @@ paths:
       summary: update vehicle
       tags:
       - Vehicles
+      security:
+      - bearerAuth: []
       responses:
         '200':
           description: successful
@@ -177,3 +201,5 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+security:
+  bearerAuth: []
