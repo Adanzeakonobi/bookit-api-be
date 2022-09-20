@@ -20,11 +20,12 @@ class VehiclesController < ApplicationController
       if @vehicle.save
         render json: { message: 'Vehicle created succesfully' }
       else
-        render json: @vehicle.errors, status: :unprocessable_entity
+        @errors = @vehicle.errors.full_messages[0..].join('. ')
+        render json: { error: @errors }, status: :unprocessable_entity
       end
 
     else
-      render json: { message: 'You have no access to this resource' }
+      render json: { error: 'You have no access to this resource' }
     end
   end
 
