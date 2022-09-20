@@ -1,13 +1,12 @@
 require 'swagger_helper'
 
+# rubocop:disable Metrics/BlockLength
+
 RSpec.describe 'vehicles', type: :request do
-
   path '/vehicles' do
-
     get('list vehicles') do
       tags 'Vehicles'
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -30,11 +29,10 @@ RSpec.describe 'vehicles', type: :request do
           image: { type: :string },
           visible: { type: :boolean }
         },
-        required: ['name', 'price', 'image', 'visible']
+        required: %w[name price image visible]
       }
 
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -84,3 +82,4 @@ RSpec.describe 'vehicles', type: :request do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -1,6 +1,6 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
+
+# rubocop:disable Metrics/BlockLength
 
 RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated
@@ -50,3 +50,4 @@ RSpec.configure do |config|
   # Defaults to json. Accepts ':json' and ':yaml'.
   config.swagger_format = :yaml
 end
+# rubocop:enable Metrics/BlockLength

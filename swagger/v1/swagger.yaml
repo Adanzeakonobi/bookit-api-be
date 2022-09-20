@@ -4,6 +4,42 @@ info:
   title: Book.it API
   version: v1
 paths:
+  "/reservations":
+    get:
+      summary: list reservations
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create reservation
+      tags:
+      - Reservations
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date
+                city:
+                  type: string
+                vehicle_id:
+                  type: integer
+                user_id:
+                  type: integer
+              required:
+              - date
+              - city
+              - vehicle_id
+              - user_id
   "/vehicles":
     get:
       summary: list vehicles
