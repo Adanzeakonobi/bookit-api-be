@@ -16,6 +16,6 @@ class Vehicle < ApplicationRecord
   end
 
   def allreservations
-    reservations.where("date >= ?", Date.today.to_s)
+    reservations.where('date >= ?', Date.today.to_s)
   end
 end
