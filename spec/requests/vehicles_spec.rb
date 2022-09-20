@@ -6,6 +6,7 @@ RSpec.describe 'vehicles', type: :request do
       tags 'Vehicles'
       security [bearerAuth: []]
       response(200, 'successful') do
+        let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -70,6 +71,17 @@ RSpec.describe 'vehicles', type: :request do
 
     patch('update vehicle') do
       tags 'Vehicles'
+      consumes 'application/json'
+      parameter name: :vehicle, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string },
+          price: { type: :number, format: :float },
+          image: { type: :string },
+          visible: { type: :boolean }
+        }
+        # required: %w[name price image visible]
+      }
       security [bearerAuth: []]
       response(200, 'successful') do
         let(:Authorization) { "Bearer #{token_for(user)}" }

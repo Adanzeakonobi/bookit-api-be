@@ -27,8 +27,7 @@ RSpec.describe 'reservations', type: :request do
         properties: {
           date: { type: :string, format: :date },
           city: { type: :string },
-          vehicle_id: { type: :integer },
-          user_id: { type: :integer }
+          vehicle_id: { type: :integer }
         },
         required: %w[date city vehicle_id user_id]
       }

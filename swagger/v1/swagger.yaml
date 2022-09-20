@@ -37,8 +37,6 @@ paths:
                   type: string
                 vehicle_id:
                   type: integer
-                user_id:
-                  type: integer
               required:
               - date
               - city
@@ -185,11 +183,27 @@ paths:
       summary: update vehicle
       tags:
       - Vehicles
+      parameters: []
       security:
       - bearerAuth: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                  format: float
+                image:
+                  type: string
+                visible:
+                  type: boolean
 servers:
 - url: http://{defaultHost}
   variables:

@@ -12,6 +12,6 @@ class Vehicle < ApplicationRecord
     vehicles = Vehicle.all
     return vehicles unless vehicles.empty?
 
-    { message: 'There are no vehicles in the list' }
+    { error: 'There are no vehicles in the list' }
   end
 end
