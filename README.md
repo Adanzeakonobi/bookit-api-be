@@ -23,7 +23,7 @@ Setting up this project locally:
 - Install gems: bundle install.
 - Run `rails db:create` to create the database
 - Run `rails db:migrate` to create the tables
-- Run `rails s` and go to `http://127.0.0.1:5000`.
+- Run `rails s` and go to `http://127.0.0.1:4000`.
 
 - Setup the front end repo with [this link](https://github.com/Danie12345/bookit-fe).
 
