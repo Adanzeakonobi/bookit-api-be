@@ -131,7 +131,9 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: successful
+          description: Retrieved list of vehicle successfully.
+        '401':
+          description: The current token is not authorized or has expired.
     post:
       summary: create vehicle
       tags:
@@ -141,7 +143,13 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: successful
+          description: Retrieved list of vehicle successfully.
+        '400':
+          description: Bad request, check your inputs.
+        '401':
+          description: The current token is not authorized or has expired
+        '422':
+          description: Missing required inputs.
       requestBody:
         content:
           application/json:
@@ -178,7 +186,11 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: successful
+          description: Found vehicle successfully
+        '401':
+          description: The current token is not authorized or has expired.
+        '404':
+          description: Vehicle not found.
     patch:
       summary: update vehicle
       tags:
@@ -188,7 +200,11 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: successful
+          description: Vehicle successfully updated.
+        '400':
+          description: Bad request, check your inputs.
+        '401':
+          description: The current token is not authorized or has expired
       requestBody:
         content:
           application/json:
