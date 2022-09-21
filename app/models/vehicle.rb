@@ -8,11 +8,13 @@ class Vehicle < ApplicationRecord
   validates :image, presence: true
   validates :visible, inclusion: [true, false]
 
-  def self.vehicles
-    vehicles = Vehicle.all
-    return vehicles unless vehicles.empty?
-
-    { error: 'There are no vehicles in the list' }
+  def self.vehicles(role)
+    if role == 'admin'
+      vehicles = Vehicle.all
+    elsif role == 'user'
+      vehicles = Vehicle.where(visible: true)
+    end
+    { vehicles: vehicles }
   end
 
   def allreservations
