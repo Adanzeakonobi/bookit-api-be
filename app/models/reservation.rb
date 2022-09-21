@@ -13,6 +13,6 @@ class Reservation < ApplicationRecord
     @reservations = Reservation.where(user_id: id)
     return @reservations unless @reservations.empty?
 
-    { message: 'You have no reservations.' }
+    { error: 'You have no reservations.' }
   end
 end

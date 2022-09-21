@@ -1,0 +1,257 @@
+---
+openapi: 3.0.1
+info:
+  title: Book.it API
+  version: v1
+paths:
+  "/reservations":
+    get:
+      summary: list reservations
+      tags:
+      - Reservations
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response.
+        '401':
+          description: The current token is not authorized or has expired.
+    post:
+      summary: create reservation
+      tags:
+      - Reservations
+      parameters: []
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response.
+        '400':
+          description: Bad request, check your inputs.
+        '401':
+          description: The current token is not authorized or has expired.
+        '422':
+          description: Missing required inputs.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date
+                city:
+                  type: string
+                vehicle_id:
+                  type: integer
+              required:
+              - date
+              - city
+              - vehicle_id
+              - user_id
+  "/users":
+    post:
+      summary: new registration
+      tags:
+      - User Registrations
+      parameters: []
+      responses:
+        '200':
+          description: Created account successfully.
+        '400':
+          description: Bad request, check your inputs.
+        '422':
+          description: Cannot create accounts with those inputs.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                      pattern: "^\\S+@\\S+\\.\\S+$"
+                      format: email
+                    role:
+                      type: string
+                    password:
+                      type: string
+                      format: password
+                    password_confirmation:
+                      type: string
+                      format: password
+                  required:
+                  - username
+                  - email
+                  - role
+                  - password
+                  - password_confirmation
+              required:
+              - user
+  "/users/sign_in":
+    post:
+      summary: create session
+      tags:
+      - Users Sessions
+      parameters: []
+      responses:
+        '200':
+          description: Sign in was successful.
+        '400':
+          description: Bad request, check your inputs.
+        '401':
+          description: Those credentials do not match an account.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      pattern: "^\\S+@\\S+\\.\\S+$"
+                      format: email
+                    password:
+                      type: string
+                      format: password
+                  required:
+                  - email
+                  - password
+              required:
+              - user
+  "/users/sign_out":
+    delete:
+      summary: delete session
+      tags:
+      - Users Sessions
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Sign out was successful.
+        '401':
+          description: Cannot sign out with provided token.
+  "/vehicles":
+    get:
+      summary: list vehicles
+      tags:
+      - Vehicles
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Retrieved list of vehicles successfully.
+        '401':
+          description: The current token is not authorized or has expired.
+    post:
+      summary: create vehicle
+      tags:
+      - Vehicles
+      parameters: []
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Vehicle created successfully.
+        '400':
+          description: Bad request, check your inputs.
+        '401':
+          description: The current token is not authorized or has expired.
+        '422':
+          description: Missing required inputs.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                  format: float
+                image:
+                  type: string
+                visible:
+                  type: boolean
+              required:
+              - name
+              - price
+              - image
+              - visible
+  "/vehicles/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show vehicle
+      tags:
+      - Vehicles
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Retrieved vehicle successfully.
+        '401':
+          description: The current token is not authorized or has expired.
+        '404':
+          description: Vehicle not found.
+    patch:
+      summary: update vehicle
+      tags:
+      - Vehicles
+      parameters: []
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response.
+        '400':
+          description: Bad request, check your inputs.
+        '401':
+          description: The current token is not authorized or has expired.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                  format: float
+                image:
+                  type: string
+                visible:
+                  type: boolean
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:4000
+- url: https://{herokuapp}
+  variables:
+    herokuapp:
+      default: example.com
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  bearerAuth: []

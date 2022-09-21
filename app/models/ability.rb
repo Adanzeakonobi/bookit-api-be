@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Vehicle, visible: true
+    can :read, Vehicle
 
     return unless user.present?
 

@@ -12,6 +12,10 @@ class Vehicle < ApplicationRecord
     vehicles = Vehicle.all
     return vehicles unless vehicles.empty?
 
-    { message: 'There are no vehicles in the list' }
+    { error: 'There are no vehicles in the list' }
+  end
+
+  def allreservations
+    reservations.where('date >= ?', Date.today.to_s)
   end
 end
