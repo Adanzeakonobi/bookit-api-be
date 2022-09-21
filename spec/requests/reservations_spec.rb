@@ -18,7 +18,7 @@ RSpec.describe 'reservations', type: :request do
         run_test!
       end
 
-      response(401, 'The current token is not authorized or has expired') do
+      response(401, 'The current token is not authorized or has expired.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
@@ -45,7 +45,7 @@ RSpec.describe 'reservations', type: :request do
       }
       security [bearerAuth: []]
 
-      response(200, 'Reservation created successfully.') do
+      response(200, 'Successful response.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
@@ -69,7 +69,7 @@ RSpec.describe 'reservations', type: :request do
         run_test!
       end
 
-      response(401, 'The current token is not authorized or has expired') do
+      response(401, 'The current token is not authorized or has expired.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {

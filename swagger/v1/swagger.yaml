@@ -15,7 +15,7 @@ paths:
         '200':
           description: Successful response.
         '401':
-          description: The current token is not authorized or has expired
+          description: The current token is not authorized or has expired.
     post:
       summary: create reservation
       tags:
@@ -25,11 +25,11 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: Reservation created successfully.
+          description: Successful response.
         '400':
           description: Bad request, check your inputs.
         '401':
-          description: The current token is not authorized or has expired
+          description: The current token is not authorized or has expired.
         '422':
           description: Missing required inputs.
       requestBody:
@@ -58,7 +58,11 @@ paths:
       parameters: []
       responses:
         '200':
-          description: successful
+          description: Created account successfully.
+        '400':
+          description: Bad request, check your inputs.
+        '422':
+          description: Cannot create accounts with those inputs.
       requestBody:
         content:
           application/json:
@@ -98,7 +102,11 @@ paths:
       parameters: []
       responses:
         '200':
-          description: successful
+          description: Sign in was successful.
+        '400':
+          description: Bad request, check your inputs.
+        '401':
+          description: Those credentials do not match an account.
       requestBody:
         content:
           application/json:
@@ -129,7 +137,9 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: successful
+          description: Sign out was successful.
+        '401':
+          description: Cannot sign out with provided token.
   "/vehicles":
     get:
       summary: list vehicles
@@ -151,11 +161,11 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: Retrieved list of vehicles successfully.
+          description: Vehicle created successfully.
         '400':
           description: Bad request, check your inputs.
         '401':
-          description: The current token is not authorized or has expired
+          description: The current token is not authorized or has expired.
         '422':
           description: Missing required inputs.
       requestBody:
@@ -194,7 +204,7 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: Found vehicle successfully
+          description: Retrieved vehicle successfully.
         '401':
           description: The current token is not authorized or has expired.
         '404':
@@ -208,11 +218,11 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: Vehicle successfully updated.
+          description: Successful response.
         '400':
           description: Bad request, check your inputs.
         '401':
-          description: The current token is not authorized or has expired
+          description: The current token is not authorized or has expired.
       requestBody:
         content:
           application/json:
@@ -233,6 +243,10 @@ servers:
   variables:
     defaultHost:
       default: localhost:4000
+- url: https://{herokuapp}
+  variables:
+    herokuapp:
+      default: example.com
 components:
   securitySchemes:
     bearerAuth:

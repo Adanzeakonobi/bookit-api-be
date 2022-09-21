@@ -46,7 +46,7 @@ RSpec.describe 'vehicles', type: :request do
       }
       security [bearerAuth: []]
 
-      response(200, 'Retrieved list of vehicles successfully.') do
+      response(200, 'Vehicle created successfully.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
@@ -70,7 +70,7 @@ RSpec.describe 'vehicles', type: :request do
         run_test!
       end
 
-      response(401, 'The current token is not authorized or has expired') do
+      response(401, 'The current token is not authorized or has expired.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
@@ -103,7 +103,7 @@ RSpec.describe 'vehicles', type: :request do
     get('show vehicle') do
       tags 'Vehicles'
       security [bearerAuth: []]
-      response(200, 'Found vehicle successfully') do
+      response(200, 'Retrieved vehicle successfully.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         let(:id) { '123' }
 
@@ -156,7 +156,7 @@ RSpec.describe 'vehicles', type: :request do
 
       }
       security [bearerAuth: []]
-      response(200, 'Vehicle successfully updated.') do
+      response(200, 'Successful response.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         let(:id) { '123' }
 
@@ -182,7 +182,7 @@ RSpec.describe 'vehicles', type: :request do
         run_test!
       end
 
-      response(401, 'The current token is not authorized or has expired') do
+      response(401, 'The current token is not authorized or has expired.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {

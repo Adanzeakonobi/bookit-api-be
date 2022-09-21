@@ -28,6 +28,14 @@ RSpec.configure do |config|
               default: 'localhost:4000'
             }
           }
+        },
+        {
+          url: 'https://{herokuapp}',
+          variables: {
+            herokuapp: {
+              default: 'example.com'
+            }
+          }
         }
       ],
       components: {
