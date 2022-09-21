@@ -13,7 +13,9 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: successful
+          description: Successful response.
+        '401':
+          description: The current token is not authorized or has expired
     post:
       summary: create reservation
       tags:
@@ -23,7 +25,13 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: successful
+          description: Reservation created successfully.
+        '400':
+          description: Bad request, check your inputs.
+        '401':
+          description: The current token is not authorized or has expired
+        '422':
+          description: Missing required inputs.
       requestBody:
         content:
           application/json:
@@ -131,7 +139,7 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: Retrieved list of vehicle successfully.
+          description: Retrieved list of vehicles successfully.
         '401':
           description: The current token is not authorized or has expired.
     post:
@@ -143,7 +151,7 @@ paths:
       - bearerAuth: []
       responses:
         '200':
-          description: Retrieved list of vehicle successfully.
+          description: Retrieved list of vehicles successfully.
         '400':
           description: Bad request, check your inputs.
         '401':
