@@ -1,19 +1,22 @@
 class VehiclesController < ApplicationController
   load_and_authorize_resource
 
+  rescue_from ActiveRecord::RecordNotFound do |_exception| # for vehicles not found
+    @vehicle = nil
+    render json: { error: 'Sorry, that vehicle does not exist or is unavailable.' }
+  end
+
   def index
     if can? :manage, @vehicle
-      render json: Vehicle.vehicles
+      render json: Vehicle.vehicles('admin')
     else
-      render json: Vehicle.vehicles.where(visible: true)
+      render json: Vehicle.vehicles('user')
     end
   end
 
   def show
     if can?(:manage, @vehicle) || @vehicle.visible
-      resp = { vehicle: { data: @vehicle } }
-      resp[:vehicle][:reservations] = @vehicle.allreservations
-      render json: resp
+      render json: @vehicle.as_json.merge({ reservations: @vehicle.reservations })
     else
       render json: { error: 'Sorry, you do not have access to this vehicle.' }
     end

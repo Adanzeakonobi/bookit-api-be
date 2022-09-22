@@ -22,18 +22,18 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'http://{defaultHost}',
+          url: 'https://{herokuapp}',
           variables: {
-            defaultHost: {
-              default: 'localhost:4000'
+            herokuapp: {
+              default: 'quiet-falls-31109.herokuapp.com'
             }
           }
         },
         {
-          url: 'https://{herokuapp}',
+          url: 'http://{defaultHost}',
           variables: {
-            herokuapp: {
-              default: 'example.com'
+            defaultHost: {
+              default: 'localhost:4000'
             }
           }
         }
