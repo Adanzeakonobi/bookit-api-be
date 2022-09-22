@@ -9,12 +9,13 @@ class Vehicle < ApplicationRecord
   validates :visible, inclusion: [true, false]
 
   def self.vehicles(role)
-    if role == 'admin'
+    case role
+    when 'admin'
       vehicles = Vehicle.all
-    elsif role == 'user'
+    when 'user'
       vehicles = Vehicle.where(visible: true)
     end
-    { vehicles: vehicles }
+    { vehicles: }
   end
 
   def allreservations
