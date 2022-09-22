@@ -7,4 +7,6 @@ Rails.application.routes.draw do
              }
   resources :vehicles, only: [:index, :show, :create, :update]
   resources :reservations, only: [:index, :create]
+  get '/', to: 'swag#api'
+  root to: 'swag#api'
 end
