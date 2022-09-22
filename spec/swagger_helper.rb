@@ -25,7 +25,7 @@ RSpec.configure do |config|
           url: 'https://{herokuapp}',
           variables: {
             herokuapp: {
-              default: 'quiet-falls-31109.herokuapp.com'
+              default: 'bookit-api-be.herokuapp.com'
             }
           }
         },

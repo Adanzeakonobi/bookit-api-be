@@ -4,6 +4,8 @@
 
 The Book.it API is the back-end service for the Book.it application. It makes use of the Ruby on Rails framework, PostgreSQL, and offers full user authentication and authorization capabilities to provide the Book.it app the necessary endpoints. It contains the data for booking vehicles and users' reservations for the individual user as well as admins.
 
+## API documentation
+Access the live service [here](https://bookit-api-be.herokuapp.com)
 
 ## Built With
 
