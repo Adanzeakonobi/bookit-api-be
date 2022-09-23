@@ -26,7 +26,9 @@ class VehiclesController < ApplicationController
     if can? :manage, @vehicle
 
       @vehicle = Vehicle.new(vehicle_params)
-      if @vehicle.save
+      if !image_exists?(@vehicle.image)
+        render json: { error: 'Please, check the image format.' }, status: :unprocessable_entity
+      elsif @vehicle.save
         render json: { message: 'Vehicle created succesfully' }
       else
         @errors = @vehicle.errors.full_messages[0..].join('. ')
@@ -34,7 +36,7 @@ class VehiclesController < ApplicationController
       end
 
     else
-      render json: { error: 'You have no access to this resource' }
+      render json: { error: 'You have no access to this resource.' }
     end
   end
 
