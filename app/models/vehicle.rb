@@ -5,7 +5,13 @@ class Vehicle < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true, format: { with: /\A\d+(?:\.\d{0,2})?\z/ },
                     numericality: { greater_than: 0, less_than: 1_000_000 }
-  validates :image, presence: true
+  validates :image, presence: true,
+                    format: {
+                      with: /\.png|jpg|jpeg|svg/i,
+                      message: 'Link accepts formats: png, jpg, jpeg, svg.'
+                    }
+  validates_url :image
+
   validates :visible, inclusion: [true, false]
 
   def self.vehicles(role)

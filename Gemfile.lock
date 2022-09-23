@@ -128,9 +128,16 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faraday (2.5.2)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.0)
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
     ffi (1.15.5-x64-mingw-ucrt)
+    file_validators (3.0.0)
+      activemodel (>= 3.2)
+      mime-types (>= 1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -153,6 +160,9 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
+    mime-types (3.4.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     minitest (5.16.3)
     net-imap (0.2.3)
@@ -264,6 +274,7 @@ GEM
     rubocop-ast (1.21.0)
       parser (>= 3.1.1.0)
     ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.4.0)
       childprocess (>= 0.5, < 5.0)
@@ -292,6 +303,9 @@ GEM
       tzinfo (>= 1.0.0)
     unicode-display_width (2.3.0)
     uniform_notifier (1.16.0)
+    validate_url (1.0.15)
+      activemodel (>= 3.0.0)
+      public_suffix
     warden (1.2.9)
       rack (>= 2.0.9)
     warden-jwt_auth (0.7.0)
@@ -328,8 +342,10 @@ DEPENDENCIES
   devise-jwt
   dotenv-rails
   factory_bot_rails
+  faraday
   fast_jsonapi
   ffi
+  file_validators
   jbuilder
   pg (~> 1.1)
   puma (~> 5.0)
@@ -341,6 +357,7 @@ DEPENDENCIES
   simplecov
   sprockets-rails
   tzinfo-data
+  validate_url
   web-console
   webdrivers (~> 5.0)
 
