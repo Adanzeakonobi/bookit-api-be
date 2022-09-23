@@ -40,20 +40,20 @@ third_vehicle = Vehicle.create(
 first_reservation = Reservation.create(
   user_id: first_user.id,
   vehicle_id: first_vehicle.id,
-  date: '2022-01-01',
+  date: '01-01-2022',
   city: 'Salta'
 )
 
 second_reservation = Reservation.create(
   user_id: second_user.id,
   vehicle_id: second_vehicle.id,
-  date: '2022-02-02',
+  date: '02-02-2022',
   city: 'Salta'
 )
 
 third_reservation = Reservation.create(
   user_id: first_user.id,
   vehicle_id: third_vehicle.id,
-  date: '2022-07-02',
+  date: '07-02-2022',
   city: 'Salta'
 )
