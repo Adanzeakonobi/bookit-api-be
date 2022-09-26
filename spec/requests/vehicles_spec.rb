@@ -82,6 +82,18 @@ RSpec.describe 'vehicles', type: :request do
         run_test!
       end
 
+      response(403, 'Forbidden action for current user.') do
+        let(:Authorization) { "Bearer #{token_for(user)}" }
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
       response(422, 'Missing required inputs.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
@@ -183,6 +195,18 @@ RSpec.describe 'vehicles', type: :request do
       end
 
       response(401, 'The current token is not authorized or has expired.') do
+        let(:Authorization) { "Bearer #{token_for(user)}" }
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
+      response(403, 'Forbidden action for current user.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {

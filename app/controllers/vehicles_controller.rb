@@ -23,36 +23,23 @@ class VehiclesController < ApplicationController
   end
 
   def create
-    if can? :manage, @vehicle
-
-      @vehicle = Vehicle.new(vehicle_params)
-      if !image_exists?(@vehicle.image)
-        render json: { error: 'Please, check the image format.' }, status: :unprocessable_entity
-      elsif @vehicle.save
-        render json: { message: 'Vehicle created succesfully' }
-      else
-        @errors = @vehicle.errors.full_messages[0..].join('. ')
-        render json: { error: @errors }, status: :unprocessable_entity
-      end
-
+    @vehicle = Vehicle.new(vehicle_params)
+    if !image_exists?(@vehicle.image)
+      render json: { error: 'Please, check the image format.' }, status: :unprocessable_entity
+    elsif @vehicle.save
+      render json: { message: 'Vehicle created succesfully' }
     else
-      render json: { error: 'You have no access to this resource.' }
+      @errors = @vehicle.errors.full_messages[0..].join('. ')
+      render json: { error: @errors }, status: :unprocessable_entity
     end
   end
 
   def update
-    if can? :manage, @vehicle
-      begin
-        @vehicle.update!(vehicle_params)
-        render json: { message: 'Vehicle updated succesfully' }
-      rescue StandardError
-        @errors = 'Could not update the vehicle'
-        render json: { error: @errors }, status: :unprocessable_entity
-      end
-
-    else
-      render json: { error: 'You have no access to this resource' }
-    end
+    @vehicle.update!(vehicle_params)
+    render json: { message: 'Vehicle updated succesfully' }
+  rescue StandardError
+    @errors = 'Could not update the vehicle'
+    render json: { error: @errors }, status: :unprocessable_entity
   end
 
   private

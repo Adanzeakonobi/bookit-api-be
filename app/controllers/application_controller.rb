@@ -25,6 +25,14 @@ class ApplicationController < ActionController::API
     false
   end
 
+  rescue_from CanCan::AccessDenied do |_exception|
+    if user_signed_in?
+      render json: { message: "You don't have permissions." }, status: :forbidden
+    else
+      render json: { message: 'You need to be logged in.' }, status: :unauthorized
+    end
+  end
+
   before_action :authenticate_user!, unless: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
