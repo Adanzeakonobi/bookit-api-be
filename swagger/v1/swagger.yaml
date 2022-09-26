@@ -4,6 +4,18 @@ info:
   title: Book.it API
   version: v1
 paths:
+  "/imagekit/auth_params":
+    get:
+      summary: generate imagekit authentication parameters
+      tags:
+      - Imagekit
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Imagekit authentication parameters generated.
+        '401':
+          description: The current token is not authorized or has expired.
   "/reservations":
     get:
       summary: list reservations
