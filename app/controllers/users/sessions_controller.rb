@@ -8,7 +8,7 @@ class Users::SessionsController < Devise::SessionsController
       render json: {
         status: { code: 200,
                   message: 'You have succesfully logged in.' },
-        data: UserSerializer.new(resource).serializable_hash[:data][:attributes].merge(role: resource.role)
+        data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
       }, status: :ok
     else
       render json: {
