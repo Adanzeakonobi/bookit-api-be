@@ -166,6 +166,8 @@ paths:
           description: Bad request, check your inputs.
         '401':
           description: The current token is not authorized or has expired.
+        '403':
+          description: Forbidden action for current user.
         '422':
           description: Missing required inputs.
       requestBody:
@@ -223,6 +225,8 @@ paths:
           description: Bad request, check your inputs.
         '401':
           description: The current token is not authorized or has expired.
+        '403':
+          description: Forbidden action for current user.
       requestBody:
         content:
           application/json:
