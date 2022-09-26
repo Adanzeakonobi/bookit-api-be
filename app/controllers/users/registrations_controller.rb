@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render json: {
         status: { code: 200,
                   message: 'Account successfully created!' },
-        data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
+        data: UserSerializer.new(resource).serializable_hash[:data][:attributes].merge(role: resource.role)
       }, status: :ok
     else
       error_list = resource.errors.full_messages.join(' and ').downcase
