@@ -49,6 +49,19 @@ Setting up this project locally:
 - Twitter: [@joshuaivie\_](https://twitter.com/joshuaivie_)
 - LinkedIn: [joshuaivie](https://linkedin.com/in/joshuaivie)
 
+👤 **Juan Luis Palacios**
+
+- GitHub: [@JuanLPalacios](https://github.com/JuanLPalacios)
+- Twitter: [@JuanLuisPalac20](https://twitter.com/twitterhandle)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/juan-luis-palacios-p%C3%A9rez-95b39a228/)
+
+👤 **Adaobi Vivian Okoye**
+
+- GitHub: [@githubhandle](https://github.com/adanzeakonobi) 
+- Twitter: [@twitterhandle](https://twitter.com/Adaebubemmuta)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/okoyeaadaobi)
+
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
