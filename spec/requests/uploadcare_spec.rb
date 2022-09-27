@@ -1,12 +1,12 @@
 require 'swagger_helper'
 
-RSpec.describe 'imagekit', type: :request do
-  path '/imagekit/auth_params' do
-    get('generate imagekit authentication parameters') do
-      tags 'Imagekit'
+RSpec.describe 'uploadcare', type: :request do
+  path '/uploadcare/auth_params' do
+    get('generate uploadcare authentication parameters') do
+      tags 'UploadCare'
       security [bearerAuth: []]
 
-      response(200, 'Imagekit authentication parameters generated.') do
+      response(200, 'UploadCare authentication parameters generated.') do
         let(:Authorization) { "Bearer #{token_for(user)}" }
         after do |example|
           example.metadata[:response][:content] = {
