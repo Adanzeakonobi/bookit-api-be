@@ -23,6 +23,7 @@ Setting up this project locally:
 - Clone this repository to your computer: git clone git@github.com:Danie12345/bookit-api-be.git.
 - Open the project on your code editor: "cd bookit-api-be" and "code ."
 - Install gems: bundle install.
+- Rename ".env-example" to ".env" and set up your environment.
 - Run `rails db:create` to create the database
 - Run `rails db:migrate` to create the tables
 - Run `rails s` and go to `http://127.0.0.1:4000`.
