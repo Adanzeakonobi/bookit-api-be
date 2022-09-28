@@ -27,12 +27,12 @@ RSpec.describe 'users/registrations', type: :request do
       }
 
       response(200, 'Created account successfully.') do
-        let(:user) { {user: attributes_for(:user)} }
+        let(:user) { { user: attributes_for(:user) } }
         run_test!
       end
-      
+
       response(422, 'Cannot create accounts with those inputs.') do
-        let(:user) { {user: {} } }
+        let(:user) { { user: {} } }
         run_test!
       end
     end
