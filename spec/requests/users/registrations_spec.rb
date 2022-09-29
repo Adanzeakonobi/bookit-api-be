@@ -1,8 +1,13 @@
 require 'swagger_helper'
 
 RSpec.describe 'users/registrations', type: :request do
+  after(:all) do
+    Reservation.destroy_all
+    Vehicle.destroy_all
+    User.destroy_all
+  end
+
   let!(:user) { create(:user) }
-  # let!(:Authorization) { generate_jwt_token_for(user)['Authorization'] }
 
   path '/users' do
     post('new registration') do

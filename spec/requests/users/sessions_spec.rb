@@ -1,7 +1,14 @@
 require 'swagger_helper'
 
 RSpec.describe 'users/sessions', type: :request do
-  let!(:user) { create(:user) }
+  after(:all) do
+    Reservation.destroy_all
+    Vehicle.destroy_all
+    User.destroy_all
+  end
+
+  let(:user) { create(:user) }
+  let(:Authorization) { Devise::JWT::TestHelpers.auth_headers({}, user)['Authorization'] }
 
   path '/users/sign_in' do
     post('create session') do
@@ -23,7 +30,8 @@ RSpec.describe 'users/sessions', type: :request do
       }
 
       response(200, 'Sign in was successful.') do
-        let(:user) { { user: { email: 'tom@example.com', password: '123asd' } } }
+        let(:u) { create(:user) }
+        let(:user) { { user: { email: u.email, password: u.password } } }
         run_test!
       end
 
@@ -34,33 +42,19 @@ RSpec.describe 'users/sessions', type: :request do
     end
   end
 
-  # path '/users/sign_out' do
-  #   delete('delete session') do
-  #     tags 'Users Sessions'
-  #     security [bearerAuth: []]
-  #     response(200, 'Sign out was successful.') do
-  #       let(:Authorization) { "Bearer #{token_for(user)}" }
-  #       after do |example|
-  #         example.metadata[:response][:content] = {
-  #           'application/json' => {
-  #             example: JSON.parse(response.body, symbolize_names: true)
-  #           }
-  #         }
-  #       end
-  #       run_test!
-  #     end
+  path '/users/sign_out' do
+    delete('delete session') do
+      tags 'Users Sessions'
+      security [bearerAuth: []]
 
-  #     response(401, 'Cannot sign out with provided token.') do
-  #       let(:Authorization) { "Bearer #{token_for(user)}" }
-  #       after do |example|
-  #         example.metadata[:response][:content] = {
-  #           'application/json' => {
-  #             example: JSON.parse(response.body, symbolize_names: true)
-  #           }
-  #         }
-  #       end
-  #       run_test!
-  #     end
-  #   end
-  # end
+      response(200, 'Sign out was successful.') do
+        run_test!
+      end
+
+      response(401, 'Cannot sign out with provided token.') do
+        let(:Authorization) { 'wrong' }
+        run_test!
+      end
+    end
+  end
 end

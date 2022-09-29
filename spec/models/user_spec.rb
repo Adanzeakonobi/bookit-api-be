@@ -1,9 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User, type: :feature do
   context 'validations' do
     before do
       @user = create(:user)
+    end
+
+    after do
+      @user.destroy
     end
 
     describe 'pass' do

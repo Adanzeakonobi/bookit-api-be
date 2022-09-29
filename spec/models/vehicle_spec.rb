@@ -7,6 +7,11 @@ RSpec.describe Reservation, type: :model do
       @vehicle = create(:vehicle)
     end
 
+    after do
+      @vehicle.destroy
+      @user.destroy
+    end
+
     describe 'are valid' do
       it 'when attributes are present' do
         expect(@vehicle).to be_valid

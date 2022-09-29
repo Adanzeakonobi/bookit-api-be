@@ -1,11 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe Reservation, type: :model do
+RSpec.describe Reservation, type: :feature do
   context 'validations' do
     before do
       @user = create(:user)
       @vehicle = create(:vehicle)
       @reservation = create(:reservation, user_id: @user.id, vehicle_id: @vehicle.id)
+    end
+
+    after do
+      @reservation.destroy
+      @vehicle.destroy
+      @user.destroy
     end
 
     describe 'are valid' do
