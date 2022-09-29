@@ -1,6 +1,15 @@
 require 'swagger_helper'
 
 RSpec.describe 'users/sessions', type: :request do
+  after(:all) do
+    Reservation.destroy_all
+    Vehicle.destroy_all
+    User.destroy_all
+  end
+
+  let(:user) { create(:user) }
+  let(:Authorization) { Devise::JWT::TestHelpers.auth_headers({}, user)['Authorization'] }
+
   path '/users/sign_in' do
     post('create session') do
       tags 'Users Sessions'
@@ -21,35 +30,13 @@ RSpec.describe 'users/sessions', type: :request do
       }
 
       response(200, 'Sign in was successful.') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-
-      response(400, 'Bad request, check your inputs.') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+        let(:u) { create(:user) }
+        let(:user) { { user: { email: u.email, password: u.password } } }
         run_test!
       end
 
       response(401, 'Those credentials do not match an account.') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+        let(:user) { { user: { email: 'tom@example.com', password: '123' } } }
         run_test!
       end
     end
@@ -59,27 +46,13 @@ RSpec.describe 'users/sessions', type: :request do
     delete('delete session') do
       tags 'Users Sessions'
       security [bearerAuth: []]
+
       response(200, 'Sign out was successful.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
         run_test!
       end
 
       response(401, 'Cannot sign out with provided token.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+        let(:Authorization) { 'wrong' }
         run_test!
       end
     end

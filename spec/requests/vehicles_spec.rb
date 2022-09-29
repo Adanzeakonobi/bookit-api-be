@@ -1,32 +1,28 @@
 require 'swagger_helper'
 
 RSpec.describe 'vehicles', type: :request do
+  after(:all) do
+    Reservation.destroy_all
+    Vehicle.destroy_all
+    User.destroy_all
+  end
+
+  let(:user) { create(:user) }
+  let(:vehicle) { create(:vehicle) }
+  let(:id) { vehicle.id }
+  let(:Authorization) { Devise::JWT::TestHelpers.auth_headers({}, user)['Authorization'] }
+
   path '/vehicles' do
     get('list vehicles') do
       tags 'Vehicles'
       security [bearerAuth: []]
 
       response(200, 'Retrieved list of vehicles successfully.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
         run_test!
       end
 
       response(401, 'The current token is not authorized or has expired.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+        let(:Authorization) { 'wrong' }
         run_test!
       end
     end
@@ -47,109 +43,42 @@ RSpec.describe 'vehicles', type: :request do
       security [bearerAuth: []]
 
       response(200, 'Vehicle created successfully.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-
-      response(400, 'Bad request, check your inputs.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+        let(:vehicle) do
+          { vehicle: {
+            name: 'Vehicle2',
+            price: 120,
+            image: 'https://images.immediate.co.uk/production/volatile/sites/4/2022/01/P90447343-highRes-8dac851.jpg',
+            visible: true
+          } }
         end
         run_test!
       end
 
       response(401, 'The current token is not authorized or has expired.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-
-      response(403, 'Forbidden action for current user.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+        let(:Authorization) { 'wrong' }
         run_test!
       end
 
       response(422, 'Missing required inputs.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+        let(:vehicle) { { vehicle: { price: '-1' } } }
         run_test!
       end
     end
   end
 
   path '/vehicles/{id}' do
-    # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show vehicle') do
       tags 'Vehicles'
       security [bearerAuth: []]
-      response(200, 'Retrieved vehicle successfully.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        let(:id) { '123' }
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+      response(200, 'Retrieved vehicle successfully.') do
         run_test!
       end
 
       response(401, 'The current token is not authorized or has expired.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-
-      response(404, 'Vehicle not found.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+        let(:Authorization) { 'wrong' }
         run_test!
       end
     end
@@ -168,53 +97,13 @@ RSpec.describe 'vehicles', type: :request do
 
       }
       security [bearerAuth: []]
+
       response(200, 'Successful response.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-
-      response(400, 'Bad request, check your inputs.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
         run_test!
       end
 
       response(401, 'The current token is not authorized or has expired.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-
-      response(403, 'Forbidden action for current user.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+        let(:Authorization) { 'wrong' }
         run_test!
       end
     end

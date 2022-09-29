@@ -1,6 +1,14 @@
 require 'swagger_helper'
 
 RSpec.describe 'users/registrations', type: :request do
+  after(:all) do
+    Reservation.destroy_all
+    Vehicle.destroy_all
+    User.destroy_all
+  end
+
+  let!(:user) { create(:user) }
+
   path '/users' do
     post('new registration') do
       tags 'User Registrations'
@@ -24,36 +32,12 @@ RSpec.describe 'users/registrations', type: :request do
       }
 
       response(200, 'Created account successfully.') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-
-      response(400, 'Bad request, check your inputs.') do
-        let(:Authorization) { "Bearer #{token_for(user)}" }
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+        let(:user) { { user: attributes_for(:user) } }
         run_test!
       end
 
       response(422, 'Cannot create accounts with those inputs.') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+        let(:user) { { user: {} } }
         run_test!
       end
     end

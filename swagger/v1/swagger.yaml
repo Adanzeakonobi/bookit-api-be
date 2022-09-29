@@ -26,8 +26,6 @@ paths:
       responses:
         '200':
           description: Successful response.
-        '400':
-          description: Bad request, check your inputs.
         '401':
           description: The current token is not authorized or has expired.
         '422':
@@ -60,8 +58,6 @@ paths:
       responses:
         '200':
           description: UploadCare authentication parameters generated.
-        '401':
-          description: The current token is not authorized or has expired.
   "/users":
     post:
       summary: new registration
@@ -71,8 +67,6 @@ paths:
       responses:
         '200':
           description: Created account successfully.
-        '400':
-          description: Bad request, check your inputs.
         '422':
           description: Cannot create accounts with those inputs.
       requestBody:
@@ -115,8 +109,6 @@ paths:
       responses:
         '200':
           description: Sign in was successful.
-        '400':
-          description: Bad request, check your inputs.
         '401':
           description: Those credentials do not match an account.
       requestBody:
@@ -174,12 +166,8 @@ paths:
       responses:
         '200':
           description: Vehicle created successfully.
-        '400':
-          description: Bad request, check your inputs.
         '401':
           description: The current token is not authorized or has expired.
-        '403':
-          description: Forbidden action for current user.
         '422':
           description: Missing required inputs.
       requestBody:
@@ -221,8 +209,6 @@ paths:
           description: Retrieved vehicle successfully.
         '401':
           description: The current token is not authorized or has expired.
-        '404':
-          description: Vehicle not found.
     patch:
       summary: update vehicle
       tags:
@@ -233,12 +219,8 @@ paths:
       responses:
         '200':
           description: Successful response.
-        '400':
-          description: Bad request, check your inputs.
         '401':
           description: The current token is not authorized or has expired.
-        '403':
-          description: Forbidden action for current user.
       requestBody:
         content:
           application/json:
@@ -269,5 +251,3 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-security:
-  bearerAuth: []

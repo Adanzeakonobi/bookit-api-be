@@ -73,6 +73,6 @@ RSpec.configure do |config|
     end
   end
 
-  config.include Devise::Test::IntegrationHelpers, type: :system
+  config.include Devise::Test::IntegrationHelpers, type: :model
   config.include Devise::Test::IntegrationHelpers, type: :request
 end
