@@ -9,7 +9,10 @@ Access the live service [here](https://bookit-api-be.herokuapp.com)
 
 ## Kanban board
 [Kanban link](https://github.com/users/Danie12345/projects/4/views/1)
-[Kanban screenshot](https://user-images.githubusercontent.com/35552263/190486489-5c7e34a5-5727-44b7-9e57-5fa7a435fd21.png)
+- Initial state
+![initial screenshot](https://user-images.githubusercontent.com/35552263/190486489-5c7e34a5-5727-44b7-9e57-5fa7a435fd21.png)
+-Final state
+![final screenshot](https://user-images.githubusercontent.com/98142626/193120741-65875a3e-4105-4ab9-bb20-cb15214653fa.png)
 
 ## Built With
 
