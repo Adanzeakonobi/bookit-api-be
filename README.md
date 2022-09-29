@@ -31,9 +31,20 @@ Setting up this project locally:
 - Open the project on your code editor: "cd bookit-api-be" and "code ."
 - Install gems: bundle install.
 - Rename ".env-example" to ".env" and set up your environment.
+  ```
+  DEVISE_JWT_SECRET_KEY=your_secret_key
+  DATABASE_USER=postgres
+  DATABASE_PASSWORD=yourpassword
+  DATABASE_HOST=localhost
+  POSTGRES_TEST_DB=bookit_test_db
+  POSTGRES_DEV_DB=bookit_dev_db
+  UPLOADCARE_PRIVATE_KEY=47cfa58eb55015105779
+  ```
 - Run `rails db:create` to create the database
 - Run `rails db:migrate` to create the tables
 - Run `rails s` and go to `http://127.0.0.1:4000`.
+
+
 
 - Setup the front end repo with [this link](https://github.com/Danie12345/bookit-fe).
 
