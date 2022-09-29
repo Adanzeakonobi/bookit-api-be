@@ -8,6 +8,13 @@ class User < ApplicationRecord
   validates :username, presence: true, length: { minimum: 6, maximum: 128 }
   validates :role, inclusion: { in: %w[user admin],
                                 message: '%<value>s is not a valid role' }
+  validates :email, presence: true, uniqueness: true
+
+  validate :password_and_confirmation_equal
+
+  def password_and_confirmation_equal
+    errors.add(:password_confirmation, 'does not match password') if password != password_confirmation
+  end
 
   def all_reservations
     reservations
