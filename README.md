@@ -7,6 +7,10 @@ The Book.it API is the back-end service for the Book.it application. It makes us
 ## API documentation
 Access the live service [here](https://bookit-api-be.herokuapp.com)
 
+## Kanban board
+[Kanban link](https://github.com/users/Danie12345/projects/4/views/1)
+[Kanban screenshot](https://user-images.githubusercontent.com/35552263/190486489-5c7e34a5-5727-44b7-9e57-5fa7a435fd21.png)
+
 ## Built With
 
 - Ruby on Rails
@@ -31,6 +35,7 @@ Setting up this project locally:
 - Setup the front end repo with [this link](https://github.com/Danie12345/bookit-fe).
 
 ## Authors
+Group of 5 members:
 
 👤 **Emilia Zambrano**
 
