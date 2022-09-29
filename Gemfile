@@ -21,6 +21,12 @@ gem 'jbuilder'
 # Linters
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+# Add Devise JWT - https://github.com/waiting-for-dev/devise-jwt
+gem 'devise-jwt'
+
+# Add Rack CORS - https://github.com/cyu/rack-cors
+gem 'rack-cors'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -41,18 +47,31 @@ gem 'cancancan'
 gem 'dotenv-rails'
 
 gem 'ffi'
+
+gem 'rswag'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+gem 'fast_jsonapi'
+
+# Rspec
+gem 'rspec-rails'
+
+# Validations
+gem 'file_validators'
+
+gem 'validate_url'
+
+gem 'faraday'
+
+gem 'date_validator'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-
-  # Rspec
-  gem 'rspec-rails'
 
   # https://github.com/thoughtbot/factory_bot/tree/master
   gem 'factory_bot_rails'
